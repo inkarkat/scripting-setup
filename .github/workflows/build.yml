@@ -25,4 +25,6 @@ jobs:
           sudo apt-get update --yes
           sudo apt-get install --yes bats bats-assert bats-file
       - name: Run Bats tests
-        run: bats --recursive --tap tests/
+        run: |
+          export PATH="${PWD}/bin:${PATH}"
+          bats --recursive --tap tests/

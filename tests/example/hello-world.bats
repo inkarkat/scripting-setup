@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 @test "example test" {
-    run echo "Hello, world!"
+    run hello
     [ "$status" -eq 0 ]
     [ "$output" = "Hello, world!" ]
 }
