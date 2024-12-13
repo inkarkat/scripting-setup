@@ -24,7 +24,5 @@ jobs:
         run: |
           sudo apt-get update --yes
           sudo apt-get install --yes bats bats-assert bats-file
-      - name: Run Bats tests
-        run: |
-          export PATH="${PWD}/bin:${PATH}"
-          bats --recursive --tap tests/
+      - name: Run tests
+        uses: inkarkat/scripting-testrunner@master
