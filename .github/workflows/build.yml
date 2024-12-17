@@ -10,6 +10,12 @@ on:
   workflow_dispatch:
   # Allows reuse of this workflow as a generic build for my scripting projects.
   workflow_call:
+    inputs:
+      additional-packages:
+        description: Space-separated list of additional operating system packages to install.
+        required: false
+        default: ''
+        type: string
 
 jobs:
   test:
@@ -23,6 +29,6 @@ jobs:
       - name: Install Bats
         run: |
           sudo apt-get update --yes
-          sudo apt-get install --yes bats bats-assert bats-file
+          sudo apt-get install --yes bats bats-assert bats-file ${{ inputs.additional-packages }}
       - name: Run tests
         uses: inkarkat/scripting-testrunner@master

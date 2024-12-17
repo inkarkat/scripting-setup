@@ -26,5 +26,7 @@ on:
 jobs:
   build:
     uses: inkarkat/scripting-setup/.github/workflows/build.yml@master
+    with:
+      additional-packages: libtest-script-perl perl-Modern-Perl
     secrets: inherit
 ```
