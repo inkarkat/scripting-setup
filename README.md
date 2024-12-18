@@ -28,6 +28,7 @@ jobs:
     uses: inkarkat/scripting-setup/.github/workflows/build.yml@master
     with:
       additional-packages: libtest-script-perl perl-Modern-Perl
+      packages: ''
       testrunner-include-optional-dependencies: false
       testrunner-settings: LC_ALL=C TZ=Etc/UTC
       testrunner-submodules: false

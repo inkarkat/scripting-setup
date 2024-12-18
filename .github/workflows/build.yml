@@ -17,6 +17,11 @@ on:
         required: false
         default: ''
         type: string
+      packages:
+        description: Space-separated list of operating system packages to install on the base image. Defaults to the supported test frameworks.
+        required: false
+        default: 'bats bats-assert bats-file'
+        type: string
       testrunner-include-optional-dependencies:
         description: Flag whether to also clone and include in PATH dependencies marked as optional.
         required: false
@@ -40,6 +45,11 @@ on:
         description: Space-separated list of additional operating system packages to install.
         required: false
         default: ''
+        type: string
+      packages:
+        description: Space-separated list of operating system packages to install on the base image. Defaults to the supported test frameworks.
+        required: false
+        default: 'bats bats-assert bats-file'
         type: string
       testrunner-include-optional-dependencies:
         description: Flag whether to also clone and include in PATH dependencies marked as optional.
@@ -66,10 +76,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
-      - name: Install Bats
+      - name: Install packages
+        if: inputs.packages != '' || inputs.additional-packages != ''
         run: |
           sudo apt-get update --yes
-          sudo apt-get install --yes bats bats-assert bats-file ${{ inputs.additional-packages }}
+          sudo apt-get install --yes ${{ inputs.packages }} ${{ inputs.additional-packages }}
       - name: Run tests
         uses: inkarkat/scripting-testrunner@master
         with:
