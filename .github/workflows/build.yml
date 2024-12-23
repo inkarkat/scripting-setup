@@ -81,6 +81,9 @@ jobs:
         run: |
           sudo apt-get update --yes
           sudo apt-get install --yes ${{ inputs.packages }} ${{ inputs.additional-packages }}
+      - name: Setup system
+        run: |
+          sudo install --directory --owner "$USER" --group "$USER" --mode 700 "/run/user/${UID}"
       - name: Run tests
         uses: inkarkat/scripting-testrunner@master
         with:
