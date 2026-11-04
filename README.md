@@ -30,6 +30,7 @@ jobs:
       additional-packages: libtest-script-perl perl-Modern-Perl
       packages: ''
       testrunner-include-optional-dependencies: false
+      testrunner-failfast: true
       testrunner-settings: LC_ALL=C TZ=Etc/UTC
       testrunner-submodules: false
     secrets: inherit

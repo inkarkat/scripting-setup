@@ -27,6 +27,11 @@ on:
         required: false
         default: false
         type: boolean
+      testrunner-failfast:
+        description: Flag whether to stop the test run on the first failure.
+        required: false
+        default: true
+        type: boolean
       testrunner-settings:
         description: Additional environment settings (in the form VAR=VALUE) to pass to the test runner.
         required: false
@@ -55,6 +60,11 @@ on:
         description: Flag whether to also clone and include in PATH dependencies marked as optional.
         required: false
         default: false
+        type: boolean
+      testrunner-failfast:
+        description: Flag whether to stop the test run on the first failure.
+        required: false
+        default: true
         type: boolean
       testrunner-settings:
         description: Additional environment settings (in the form VAR=VALUE) to pass to the test runner.
@@ -88,5 +98,6 @@ jobs:
         uses: inkarkat/scripting-testrunner@master
         with:
           include-optional-dependencies: ${{ inputs.testrunner-include-optional-dependencies }}
+          failfast: ${{ inputs.testrunner-failfast }}
           settings: ${{ inputs.testrunner-settings }}
           submodules: ${{ inputs.testrunner-submodules }}
